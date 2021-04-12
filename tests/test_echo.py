@@ -7,7 +7,7 @@ Students MUST EDIT this module, to add more tests to run
 against the 'echo.py' program.
 """
 
-__author__ = "Erick Sibrian"
+__author__ = "Erick Sibrian,Matt"
 
 import sys
 import importlib
@@ -79,6 +79,7 @@ class TestEcho(unittest.TestCase):
         """Check if main() function prints anything at all"""
         module_to_test = self.module.__file__
         run_capture(module_to_test)
+        self.assertEqual()
 
     def test_simple_echo(self):
         """Check if main actually echoes an input string"""
@@ -111,7 +112,7 @@ class TestEcho(unittest.TestCase):
         self.assertEqual(output[0], "HELLO WORLD")
 
     def test_upper_long(self):
-        args = ["-upper", "hello world"]
+        args = ["--upper", "hello world"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "HELLO WORLD")
 
@@ -131,8 +132,8 @@ class TestEcho(unittest.TestCase):
         self.fail()  # replace me
 
     def test_help_message(self):
-        # your code here
-        self.fail()  # replace me
+        with open("USAGE","r") as f:
+            usage = f.readlines()
 
     #
     # Students: add a flake8 test here.

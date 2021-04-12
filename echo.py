@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """An enhanced version of the 'echo' cmd line utility."""
 
-__author__ = "Erick Sibrian, Joseph hafed"
+__author__ = "Erick Sibrian, Joseph hafed,Daniel"
 
 
 import sys
@@ -28,20 +28,21 @@ def main(args):
     """Implementation of echo"""
     parser = create_parser()
     ns = parser.parse_args(args)
-    print(type(ns))
+
     if not ns:
         parser.print_usage()
         sys.exit(1)
 
     # argument conditions
 
+    result = ns.text
     if ns.upper:
-        print(ns.text.upper())
-    elif ns.title:
-        print(ns.text.title())
-    elif ns.lower:
-        print(ns.lower())
-    return
+        result = ns.text.upper()
+    if ns.lower:
+        result = ns.text.lower()
+    if ns.title:
+        result = ns.text.title()
+    print(result)
 
 
 if __name__ == '__main__':
