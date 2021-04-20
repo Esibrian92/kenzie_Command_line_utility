@@ -78,8 +78,8 @@ class TestEcho(unittest.TestCase):
     def test_echo(self):
         """Check if main() function prints anything at all"""
         module_to_test = self.module.__file__
-        run_capture(module_to_test)
-        self.assertEqual()
+        output = run_capture(module_to_test)
+        self.assertTrue(output)
 
     def test_simple_echo(self):
         """Check if main actually echoes an input string"""
@@ -128,11 +128,12 @@ class TestEcho(unittest.TestCase):
         self.assertEqual(output[0], "Hello World")
 
     def test_multiple_options(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["-tul", "hello world"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "Hello World")
 
     def test_help_message(self):
-        with open("USAGE","r") as f:
+        with open("USAGE", "r") as f:
             usage = f.readlines()
 
     #
